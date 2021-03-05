@@ -35,7 +35,7 @@ class LeafletMap extends Component {
       return L.circleMarker(latlng, options).bindPopup(
         function(layer) {
           const time = new Date(feature.properties.time)
-          return `${feature.title} - ${time}`;
+          return `${feature.properties.place} - ${time}`;
         }
       );
     };
