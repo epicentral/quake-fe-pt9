@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "coverage": "CI=true yarn test --coverage --watchAll=false || true"
   },
-	"jest": {
+  "jest": {
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",

@@ -24,13 +24,13 @@ class LeafletMap extends Component {
     };
     // fn passed to the filter prop of react-leaflets GeoJSON component.
     this.filterByMag = (feature, layer) => {
-      return feature.properties.magnitude >= this.state.magnitude;
+      return feature.properties.mag >= this.state.magnitude;
     };
     // styles fn to pass to pointToLayer() to have the quakes appear as red circles.
     // the .bindPopup() creates a popup for each circle showing the quake titles.
     this.markerStyles = (feature, latlng) => {
       const options = {...this.state.geojsonMarkerOptions};
-      options.radius = this.magRadius(feature.properties.magnitude);
+      options.radius = this.magRadius(feature.properties.mag);
       options.fillColor = this.dateColor(feature.properties.time);
       return L.circleMarker(latlng, options).bindPopup(
         function(layer) {
@@ -46,7 +46,7 @@ class LeafletMap extends Component {
         return "red";
       } else if (now - time <= 604800000) { // week
         return "orange";
-      } else if (now - time <= 2629800000 / 2) { // two weeks
+      } else if (now - time <= 604800000 * 3) { // two weeks
         return "yellow";
       } else { // over two weeks
         return "green";
@@ -68,7 +68,7 @@ class LeafletMap extends Component {
 
   componentDidMount() {
     axios
-      .get(`https://labspt9-quake-be.herokuapp.com/getquakes?mag=${this.state.magnitude}&date=m`)
+      .get(`https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson`)
       .then(res => {
         this.setState({ quakes: res.data });
       });
