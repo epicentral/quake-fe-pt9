@@ -10,7 +10,7 @@ const Legend = () => {
           <p>Time since quake</p>
           <div>{"<day"} <div className="red"></div></div>
           <div>{"<week"} <div className="orange"></div></div>
-          <div>{"<fortnight"} <div className="yellow"></div></div>
+          <div>{"<three weeks"} <div className="yellow"></div></div>
           <div>{"<month"} <div className="green"></div></div>
         </div>
         <div style={{display: "flex", justifyContent: 'space-around', flexDirection: "row", alignItems: ""}}>
